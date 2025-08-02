@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz Time ✨</h1>
+    <div id="quiz">
+      <div id="timer">Time left: 15s</div>
+      <div id="question">Loading question...</div>
+      <ul id="options"></ul>
+      <button id="next">Next</button>
+      <div id="result" class="hidden"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What is the capital of India?",
+        options: ["Mumbai", "New Delhi", "Chennai", "Kolkata"],
+        answer: "New Delhi"
+      },
+      {
+        question: "Which language is used for web development?",
+        options: ["Python", "JavaScript", "C", "Java"],
+        answer: "JavaScript"
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Venus", "Jupiter"],
+        answer: "Mars"
+      },
+       {
+    question: "What does HTML stand for?",
+    options: [
+      "HyperText Machine Language",
+      "HyperText and Markup Language",
+      "HyperText Markup Language",
+      "Home Tool Markup Language"
+    ],
+    answer: "HyperText Markup Language"
+  },
+  {
+    question: "Which CSS property controls the text size?",
+    options: ["font-style", "text-size", "font-size", "text-style"],
+    answer: "font-size"
+  },
+  {
+    question: "What does JS stand for?",
+    options: ["JavaSystem", "JavaStart", "JavaScript", "JustScript"],
+    answer: "JavaScript"
+  }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedOption = null;
+    let timer;
+    let timeLeft = 15;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("next");
+    const resultEl = document.getElementById("result");
+    const timerEl = document.getElementById("timer");
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+      selectedOption = null;
+
+      q.options.forEach(option => {
+        const li = document.createElement("li");
+        li.textContent = option;
+        li.classList.add("option");
+        li.addEventListener("click", () => selectOption(li, q.answer));
+        optionsEl.appendChild(li);
+      });
+
+      startTimer();
+    }
+
+    function selectOption(optionEl, correctAnswer) {
+      if (selectedOption) return;
+
+      selectedOption = optionEl;
+      const isCorrect = optionEl.textContent === correctAnswer;
+
+      if (isCorrect) {
+        optionEl.classList.add("correct");
+        score++;
+      } else {
+        optionEl.classList.add("wrong");
+        [...optionsEl.children].forEach(opt => {
+          if (opt.textContent === correctAnswer) {
+            opt.classList.add("correct");
+          }
+        });
+      }
+
+      clearInterval(timer);
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (!selectedOption) {
+        alert("Please select an option or wait for the timer to finish.");
+        return;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        resetTimer();
+        showQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    function showResult() {
+      questionEl.style.display = "none";
+      optionsEl.style.display = "none";
+      nextBtn.style.display = "none";
+      timerEl.style.display = "none";
+      resultEl.textContent = `🎉 You scored ${score} out of ${questions.length}`;
+      resultEl.classList.remove("hidden");
+    }
+
+    function startTimer() {
+      timeLeft = 15;
+      timerEl.textContent = `Time left: ${timeLeft}s`;
+      timer = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = `Time left: ${timeLeft}s`;
+
+        if (timeLeft === 0) {
+          clearInterval(timer);
+          autoReve-alAnswer();
+        }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timerEl.textContent = "";
+    }
+
+    function autoRevealAnswer() {
+      const q = questions[currentQuestion];
+      [...optionsEl.children].forEach(opt => {
+        if (opt.textContent === q.answer) {
+          opt.classList.add("correct");
+        } else {
+          opt.classList.add("wrong");
+        }
+      });
+      selectedOption = true;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
+
