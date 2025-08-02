@@ -31,7 +31,7 @@ As part of the **Frontend Web Development Internship** at **CODTECH IT SOLUTIONS
 ## 📁 Folder Structure:
 ```
 interactive-quiz-app/
-├── interactive.html        → Main HTML file with all logic
+├── interactive quiz app.html        → Main HTML file with all logic
 ├── style.css         → External CSS for styling
 ├── README.md         → This file
 
