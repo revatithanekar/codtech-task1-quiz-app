@@ -62,3 +62,7 @@ Thanks to **CODTECH IT SOLUTIONS** for this wonderful opportunity to build and i
 ## 📞 Contact:
 - 💼 [codtechitsolutions.com](https://codtechitsolutions.com)
 - 📧 hr@codtechitsolutions.com
+
+
+output
+<img width="1742" height="916" alt="Image" src="https://github.com/user-attachments/assets/d7f85f8c-f13d-4090-b1a7-7415460eadfe" />
