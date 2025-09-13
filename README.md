@@ -28,17 +28,6 @@ As part of the **Frontend Web Development Internship** at **CODTECH IT SOLUTIONS
 
 ---
 
-## 📁 Folder Structure:
-```
-interactive-quiz-app/
-├── interactive quiz app.html        → Main HTML file with all logic
-├── style.css         → External CSS for styling
-├── README.md         → This file
-
-```
-
----
-
 ## 🚀 How to Run the Project:
 1. Download the project folder or clone the repository.
 2. Open `interactive quiz app.html` in any modern web browser.
